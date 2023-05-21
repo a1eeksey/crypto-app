@@ -60,38 +60,6 @@ export default createStore({
     }
   },
   actions: {
-    // request using backend
-    fetchDataBackend() {
-    // format number to billion, million etc.
-    function formatNumber(num) {
-                    if (num >= 1000000000) {
-                      return (num / 1000000000).toFixed(2) + "B";
-                    }
-                    if (num >= 1000000) {
-                      return (num / 1000000).toFixed(2) + "M";
-                    }
-                    if (num >= 1000) {
-                      return (num / 1000).toFixed(2) + "K";
-                    }
-                    return num;
-            }
-
-      axios
-        .get('http://localhost:3000/coins')
-        .then(response => {
-        console.log(response.data);
-        this.commit('setCoins', response.data.map(item => ({
-              id: item.id,
-              img: item.image,
-              name: item.name,
-              price: item.current_price,
-              oneHchange: item.price_change_percentage_1h_in_currency,
-              twfourHchange: item.price_change_percentage_24h,
-              sevDchange: item.price_change_percentage_7d_in_currency,
-              marketCap: formatNumber(item.market_cap)
-            })))
-      })
-    }, 
     // fetching fiat currencies available for chart on coingesko
     fetchFiatCurrencies() {
       fetch(`https://api.coingecko.com/api/v3/exchange_rates`)
@@ -138,6 +106,47 @@ export default createStore({
       return num;
     }
   fetch(`https://api.coingecko.com/api/v3/coins/markets?market_data=true&vs_currency=${this.state.selectedCurrency.toUpperCase()}&order=market_cap_desc&per_page=30&page=1&sparkline=false&market_cap=true&price_change_percentage=1h%2C7d&volume=true`)
+    .then(response => response.json())
+      .then(data => {
+              console.log(this.state.selectedCurrency);
+              console.log(data);
+              // map data to coins array
+              this.commit('setCoins', data.map(item => ({
+                id: item.id,
+                img: item.image,
+                name: item.name,
+                price: item.current_price,
+                oneHchange: item.price_change_percentage_1h_in_currency,
+                twfourHchange: item.price_change_percentage_24h,
+                sevDchange: item.price_change_percentage_7d_in_currency,
+                marketCap: formatNumber(item.market_cap)
+              })))
+              // if data had been received set loadedPage flag to true(it will show tradeView page) 
+              if (this.state.coins) {
+                this.commit('setLoadedPage', true)
+              }
+            })
+            // catch errors
+            .catch(error => {
+              console.error(error)
+            });
+    },
+    // fetching crypto data
+    fetchDataTradingView() {
+      // format number to billion, million etc.
+      function formatNumber(num) {
+      if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(2) + "B";
+      }
+      if (num >= 1000000) {
+        return (num / 1000000).toFixed(2) + "M";
+      }
+      if (num >= 1000) {
+        return (num / 1000).toFixed(2) + "K";
+      }
+      return num;
+    }
+  fetch(`https://api.coingecko.com/api/v3/coins/markets?market_data=true&vs_currency=${this.state.selectedCurrencyForChart.toUpperCase()}&order=market_cap_desc&per_page=30&page=1&sparkline=false&market_cap=true&price_change_percentage=1h%2C7d&volume=true`)
     .then(response => response.json())
       .then(data => {
               console.log(this.state.selectedCurrency);

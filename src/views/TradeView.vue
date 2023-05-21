@@ -40,7 +40,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('fetchData')
+        this.$store.dispatch('fetchDataTradingView')
         this.loadedPage = this.$store.state.loadedPage
 
         if (window.innerWidth < 800) {
