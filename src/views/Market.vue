@@ -8,9 +8,9 @@
       <h2 @click="this.$router.push('/')">ALEER</h2>
       <div>
         <div @click="this.openedCurrencyPopup = true" class="currency">
-          <h3> {{ this.$store.state.selectedCurrencyForChart
+          <h3> {{ this.$store.state.selectedCurrency
           .toUpperCase() }}</h3>
-          <img src="../assets/icons/arrow.svg" alt="">
+          <img src="@/assets/icons/arrow.svg" alt="">
         </div>
         <h3 @click="this.$router.push('/trade')">Trade$</h3>
       </div>
