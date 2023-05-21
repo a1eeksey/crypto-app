@@ -72,7 +72,8 @@ export default {
       pageMore800: true,
       pageMore680: true,
       openedCurrencyPopup: false,
-      loadedPage: true
+      loadedPage: true,
+      currencyFilter: ''
     }
   },
 
@@ -105,7 +106,18 @@ export default {
       return this.$store.state.coins
     },
     filteredCurrencies() {
-      return this.$store.state.fiatCurrencies
+      // if input field (currency filter) is empty
+      if (this.currencyFilter === '') {
+        return this.$store.state.fiatCurrencies
+      // if input field (currency filter) contains sth - show items which start with written text
+      } else {
+        const filterText = this.currencyFilter.toLowerCase();
+
+        return this.$store.state.fiatCurrencies.filter(currency => {
+          const name = currency.currency.toLowerCase();
+          return name.startsWith(filterText);
+        });
+      }
     }
   },
 
