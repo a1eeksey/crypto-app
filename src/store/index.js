@@ -13,7 +13,8 @@ export default createStore({
     selectedCurrencyForChart: 'usd',
     // selected period (for chart in TradeView)
     cryptoPeriod: 'max',
-
+    // selected chart type
+    chartType: 'line',
     openedCurrencyPopup: false,
     // loaded page flag
     loadedPage: false,
@@ -44,6 +45,9 @@ export default createStore({
     },
     setCryptoPeriod(state, period) {
       state.cryptoPeriod = period
+    },
+    setChartType(state, type) {
+      state.chartType = type
     },
     // crypto data
     setCoins(state, value) {

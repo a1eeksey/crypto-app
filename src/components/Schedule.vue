@@ -44,16 +44,18 @@
         </div>
 
         <div class="chart">
-          <Chart />
+          <LineChart v-if="this.$store.state.chartType === 'line'" />
+          <CandleChart v-if="this.$store.state.chartType === 'candle'"/>
         </div>
     </div>
   </template>
   
   <script>
-  import Chart from './Chart.vue'
+import CandleChart from './CandleChart.vue'
+  import LineChart from './LineChart.vue'
   export default {
     components: {
-      Chart
+      LineChart, CandleChart
     },
     data() {
       return {
