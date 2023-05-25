@@ -6,11 +6,9 @@
                 <img v-if="this.coinInfo.img" class="coin-icon" :src="this.coinInfo.img" alt="">
                 <h3>{{ this.$store.state.selectedCrypto.toUpperCase() }}</h3>
                 <h3 class="padding">-</h3>
-                <div class="currencies">
-                  <select @change="changeCurrencyForChart($event.target.value)">
-                    <option value="usd">USD</option>
-                    <option value="eur">EUR</option>
-                  </select>
+                <div class="currency">
+                  <h3> {{ this.$store.state.selectedCurrency.toUpperCase() }}</h3>
+                  <!-- <img src="@/assets/icons/arrow.svg" alt=""> -->
                 </div>
             </div>
         <div class="info">
