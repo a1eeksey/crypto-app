@@ -1,5 +1,8 @@
 # crypto-app
 
+this app is available on github pages!
+https://a1eeksey.github.io/crypto-app/
+
 ## Project setup
 ```
 npm install
