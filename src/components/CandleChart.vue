@@ -6,7 +6,7 @@
 
   <span v-else>
     <div ref="chartContainer"></div>
-    <ChartPeriod />
+    <ChartOptions />
   </span>
   
 </template>
@@ -15,11 +15,11 @@
 
 import axios from 'axios';
 import { createChart } from 'lightweight-charts';
-import ChartPeriod from './ChartPeriod.vue';
+import ChartOptions from './ChartOptions.vue';
 
 export default {
   components: {
-    ChartPeriod
+    ChartOptions
   },
   async mounted() {
     await this.getData();

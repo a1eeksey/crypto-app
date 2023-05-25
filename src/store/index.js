@@ -53,6 +53,9 @@ export default createStore({
     setCoins(state, value) {
       state.coins = value
     },
+    clearCoins(state) {
+      state.coins = []
+    },
     setFiatCurrencies(state, value) {
       state.fiatCurrencies = value
     },

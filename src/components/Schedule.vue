@@ -3,7 +3,7 @@
         <div>
             <div class="selected-values">
               <!--currency's icon-->
-                <img class="coin-icon" :src="this.coinInfo.img" alt="">
+                <img v-if="this.coinInfo.img" class="coin-icon" :src="this.coinInfo.img" alt="">
                 <h3>{{ this.$store.state.selectedCrypto.toUpperCase() }}</h3>
                 <h3 class="padding">-</h3>
                 <div class="currencies">
@@ -21,17 +21,17 @@
             <!--change in 1 hour-->
             <div class="item">
                 <h3 class="key">1-Hr change</h3>
-                <h3 v-if="this.coinInfo" :class="this.coinInfo.oneHchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.oneHchange).toFixed(4) }}</h3>
+                <h3 v-if="this.coinInfo" :class="this.coinInfo.oneHchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.oneHchange).toFixed(4) }} %</h3>
                 <h3 v-else>Error</h3>
             </div>
             <div class="item">
                 <h3 class="key">24-Hr change</h3>
-                <h3 v-if="this.coinInfo" :class="this.coinInfo.twfourHchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.twfourHchange).toFixed(4) }}</h3>
+                <h3 v-if="this.coinInfo" :class="this.coinInfo.twfourHchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.twfourHchange).toFixed(4) }} %</h3>
                 <h3 v-else>Error</h3>
             </div>
             <div class="item">
                 <h3 class="key">7-d change</h3>
-                <h3 v-if="this.coinInfo" :class="this.coinInfo.sevDchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.sevDchange).toFixed(4) }}</h3>
+                <h3 v-if="this.coinInfo" :class="this.coinInfo.sevDchange > 0 ? 'green' : 'red'">{{ parseFloat(this.coinInfo.sevDchange).toFixed(4) }} %</h3>
                 <h3 v-else>Error</h3>
             </div>
 
@@ -63,8 +63,7 @@ import CandleChart from './CandleChart.vue'
       }
     },
     mounted() {
-      // this.fetchAndFilterData()
-      this.coinInfo = this.$store.state.coins.find(item => item.id === this.$store.state.selectedCrypto)
+      this.fetchAndFilterData()
     },
     methods: {
       changeCurrencyForChart(currency) {
@@ -73,7 +72,7 @@ import CandleChart from './CandleChart.vue'
         console.log(currency);
       },
       async fetchAndFilterData() {
-        await this.$store.dispatch('fetchData')
+        await this.$store.dispatch('fetchDataTradingView')
         this.coinInfo = this.$store.state.coins.find(item => item.id === this.$store.state.selectedCrypto)
         console.log(this.coinInfo);
       }

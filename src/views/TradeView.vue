@@ -16,9 +16,9 @@
         </div>
     </div>
 
-    <div :class="!pageMore800 ? 'mobile' : 'pc'" class="trade_content">
+    <div :class="windowWidth < 800 ? 'mobile' : 'pc'" class="trade_content">
         <Schedule />
-        <div v-if="pageMore800" class="buysell_container"><BuySell /></div>
+        <div v-if="windowWidth > 1350" class="buysell_container"><BuySell /></div>
     </div>
 </div>
 </template>
@@ -34,13 +34,11 @@ export default {
     data() {
         return {
             loadedPage: false,
-            pageMore800: true,
-            pageMore680: true,
+            windowWidth: null,
             openedCurrencyPopup: false
         }
     },
     mounted() {
-        this.$store.dispatch('fetchDataTradingView')
         this.loadedPage = this.$store.state.loadedPage
 
         if (window.innerWidth < 800) {
@@ -50,7 +48,18 @@ export default {
             this.pageMore680 = false
         }
     },
+    // window resize
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
     methods: {
+        handleResize() {
+            this.windowWidth = window.innerWidth;
+        },
         changeCurrencyPopup() {
             this.$store.commit('changeCurrencyPopup', false)
         },  
