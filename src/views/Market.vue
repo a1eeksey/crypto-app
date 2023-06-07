@@ -22,7 +22,7 @@
         <div class="item main">
           <h2 class="icon">Icon</h2>
           <h2 class="name">Name</h2>
-          <h2>Price$</h2>
+          <h2>Price</h2>
           <h2 v-if="windowWidth > 800">1h %</h2>
           <h2 class="last-item">24h %</h2>
           <h2 v-if="windowWidth > 800">7d %</h2>
