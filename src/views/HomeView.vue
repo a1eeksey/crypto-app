@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div :class="{'mobile': windowWidth < 680}" class="container">
     <div class="home_header">
       <h2>ALEER</h2>
       <div>
         <h3 @click="this.$router.push('/trade')">Trade$</h3>
-        <h3 @click="this.$router.push('/market')">Market</h3>
+        <h3 @click="goToMarket()">Market</h3>
       </div>
     </div>
 
@@ -89,7 +89,7 @@
         </div>
 
         <div class="home_button">
-          <button @click="this.$router.push('/market')">See more</button>
+          <button @click="goToMarket()">See more</button>
         </div>
       </div>
       
@@ -132,6 +132,10 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    goToMarket() {
+      this.$router.push('/market')
+      window.scrollTo(0,0)
+    },
     handleResize() {
       this.windowWidth = window.innerWidth;
     },

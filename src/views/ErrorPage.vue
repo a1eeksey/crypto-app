@@ -1,5 +1,5 @@
 <template>
-  <div class="error">200 | Sorry, something went wrong...</div>
+  <div class="error">200 | Sorry, this page still doesn't exist...</div>
 </template>
 
 <style scoped>
