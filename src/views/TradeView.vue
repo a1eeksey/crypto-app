@@ -1,11 +1,4 @@
 <template>
-<!-- <div v-if="!loadedPage && !this.$store.state.errorPage" class="loading">
-    <img src="../assets/vids/cube-blue.gif" alt="">
-</div>
-<div v-else-if="this.$store.state.errorPage" class="loading">
-    <ErrorPage />
-</div>  -->
-<!-- v-else -->
 <div class="trade_container">
     <div class="trade_header home_header">
         <h2 @click="this.$router.push('/')">ALEER</h2>

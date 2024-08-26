@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     createChartMethod() {
-    // Создаем график внутри контейнера после монтирования компонента
     const chart = createChart(this.$refs.chartContainer, {
       height: 400,
       // add couple of data to chart

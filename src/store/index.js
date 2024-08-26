@@ -115,8 +115,6 @@ export default createStore({
   fetch(`https://api.coingecko.com/api/v3/coins/markets?market_data=true&vs_currency=${this.state.selectedCurrency.toUpperCase()}&order=market_cap_desc&per_page=30&page=1&sparkline=false&market_cap=true&price_change_percentage=1h%2C7d&volume=true`)
     .then(response => response.json())
       .then(data => {
-              console.log(this.state.selectedCurrency);
-              console.log(data);
               // map data to coins array
               this.commit('setCoins', data.map(item => ({
                 id: item.id,

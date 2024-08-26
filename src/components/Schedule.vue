@@ -8,7 +8,6 @@
                 <h3 class="padding">-</h3>
                 <div class="currency">
                   <h3> {{ this.$store.state.selectedCurrency.toUpperCase() }}</h3>
-                  <!-- <img src="@/assets/icons/arrow.svg" alt=""> -->
                 </div>
             </div>
         <div class="info">

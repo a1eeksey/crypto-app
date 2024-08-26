@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     createChartMethod() {
-    // Создаем график внутри контейнера после монтирования компонента
     const chart = createChart(this.$refs.chartContainer, {
       height: 400,
       // add couple of data to chart
@@ -51,7 +50,6 @@ export default {
         },
     });
 
-    // Добавляем серию свечей на график
     const candlestickSeries = chart.addCandlestickSeries();
     candlestickSeries.setData(this.data);
     },
@@ -65,7 +63,6 @@ export default {
       );
   const data = response.data;
   
-  // Преобразование данных для свечей
   const formattedData = data.map(([time, open, high, low, close]) => ({
     time: time / 1000,
     open: open,

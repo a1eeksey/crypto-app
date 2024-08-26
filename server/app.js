@@ -1,16 +1,9 @@
-
-
-/* attempt to get free data from coingesko but no( */
-
-
-
 const express = require('express');
 const axios =  require('axios');
 const cors = require('cors');
 
 const app = express();
 
-// Разрешить все источники для CORS
 app.use(cors());
 app.get('/coins', async (req, res) => {
   try {
